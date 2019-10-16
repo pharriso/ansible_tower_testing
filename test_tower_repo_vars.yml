@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  tasks:
+    - name: write file to test var
+      copy:
+        dest: /tmp/vars_test.txt
+        content: "Message is {{ message }}"

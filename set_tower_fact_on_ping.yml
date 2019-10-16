@@ -1,0 +1,18 @@
+---
+
+- name: set fact based on ansible ping
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: test connectivity to host
+      ping:
+      register: ping
+
+    - name: clear failed hosts
+      meta: clear_host_errors
+
+    - name: set success fact for ping
+      set_fact:
+        network_ping: success
+        cacheable: yes
+      when: ping.ping is defined
